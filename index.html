@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CarHub - TikTok Cars</title>
+  <link rel="icon" href="icon.ico" type="image/png" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      padding: 30px 0 10px;
+      text-align: center;
+      background: #111;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .logo-container img {
+      height: 60px;
+    }
+
+    .logo-container h1 {
+      font-size: 2.5em;
+      color: #00ffff;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+      margin: 0;
+    }
+
+    .category-buttons {
+      margin: 20px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      background: #222;
+      color: #0ff;
+      border: 1px solid #0ff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #0ff;
+      color: #000;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    iframe {
+      width: 325px;
+      height: 575px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    iframe:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="image.png" alt="CarHub logo">
+    </div>
+  </header>
+
+  <div class="category-buttons">
+    <button onclick="loadCategory('sport')">🏎️ Sport</button>
+    <button onclick="loadCategory('drift')">💨 Drift</button>
+    <button onclick="loadCategory('jdm')">🇯🇵 JDM</button>
+  </div>
+
+  <div class="video-container" id="videoContainer"></div>
+
+  <script>
+    const videos = {
+      sport: [
+        "7398233075727027473",
+        "7460179609439456518",
+        "7484680483226307895",
+        "7468709268619840773",
+        "7470237678454263045"
+      ],
+      drift: [
+        "7393227643258244385",
+        "7210434195234098474",
+        "7234521225676846342",
+        "7245597794435437870",
+        "7305615949887999274"
+      ],
+      jdm: [
+        "7294844969622101254",
+        "7482801770809396486",
+        "7310479691125722370",
+        "7190243793734470914",
+        "7212100795451147553"
+      ]
+    };
+
+    function loadCategory(category) {
+      const container = document.getElementById('videoContainer');
+      container.innerHTML = '';
+      videos[category].forEach(id => {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.tiktok.com/embed/${id}`;
+        iframe.allowFullscreen = true;
+        container.appendChild(iframe);
+      });
+    }
+
+    // Chargement par défaut
+    loadCategory('sport');
+  </script>
+
+  <script async src="https://www.tiktok.com/embed.js"></script>
+</body>
+</html>
